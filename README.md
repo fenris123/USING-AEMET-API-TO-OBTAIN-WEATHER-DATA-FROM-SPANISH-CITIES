@@ -17,6 +17,9 @@ Como somos conscientes de que no todo el mundo maneja ese formato, un segundo Sc
 
 
 
+
+
+
 REQUISITOS:
 
 
@@ -34,6 +37,11 @@ C) Guardaremos el archivo con el nombre token.env (Guardar como, ponemos el nomb
 
 D) En el programa de python cambiamos la linea load_dotenv("C:/espaciopython/enviroments/tokens.env")  y ponemos la ruta de nuestro archivo.  
    Si no se quiere cambiar nada en el programa, se puede crear las carpetas C:/espaciopython/enviroments  y meter el archivo en ella.
+
+
+
+
+
 
 
 2 - LIBRERIAS
@@ -63,9 +71,19 @@ Para obtener los id de todas las estaciones, pueden buscarse aqui:  [https://dat
 En esa web puede encontrarse el siguiente enlace, que iniciara directamente ladescarga del listado de estaciones en excel:  https://datosclima.es/Aemethistorico/Archivos/ListadoEstaciones.xlsx
 
 
+4 - SOBRE LOS METADATOS
+
+La API de AEMET permite descargar tambien los metadatos. Basicamente son la "leyenda" con la descripcion de los datos.
+No obstante, los nombres asignados son muy descriptivos.  Ademas, una vez descargados son los mismos siempre.
+Por ello el programa da la opcion de guardarlos o no.
+
+Ademas aunque esten en formato json, son muy simples de entender y manejar  incluso para alguien sin formacion, asi que el programa convertidor a excel no afectara a este segundo archivo. 
+Basta con abrirlo con el bloc de notas.
 
 
-4 - NOTA LEGAL SOBRE EL USO DE LOS DATOS OBTENIDOS DE LA AEMET. 
+
+
+5 - NOTA LEGAL SOBRE EL USO DE LOS DATOS OBTENIDOS DE LA AEMET. 
 
 Si se van a emplear los datos obtenidos de la AEMET de alguna manera mas alla de la estrictamente personal, debe leerse antes esta nota legal de la AEMET:
 https://www.aemet.es/es/nota_legal
@@ -73,7 +91,7 @@ https://www.aemet.es/es/nota_legal
 
 
 
-5- USO RESPONSABLE.
+6- USO RESPONSABLE.
 
 Hemos limitado conscientemente la peticion de datos a un rango de 6 meses, o a un año entero.
 La API de AEMET admite una peticion de un rango maximo de 7 meses.  Para el año completo, el script simplemente encadena  2 peticiones.
