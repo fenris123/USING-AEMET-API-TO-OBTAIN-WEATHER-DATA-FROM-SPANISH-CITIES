@@ -1,5 +1,3 @@
-# USING-AEMET-API-TO-OBTAIN-WEATHER-DATA-FROM-SPANISH-CITIES.
-
 This Python script is designed to aquire wheather data from Spanish Meteorologic Agency AEMET.
 The rest of the document is in Spanish. (i'm spanish after all).  If you are interested on this, i recomend to use google translator.
 
