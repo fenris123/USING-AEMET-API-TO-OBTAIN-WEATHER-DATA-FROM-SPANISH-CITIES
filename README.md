@@ -5,15 +5,15 @@ The rest of the document is in Spanish. (i'm spanish after all).  If you are int
 
 DESCRIPCIÓN GENERAL.
 
-El primer script esta diseñado para obtener los datos meteorologicos de la AEMET usando su API.
+El primer script (api_aemet) esta diseñado para obtener los datos meteorologicos de las estaciones de AEMET usando su API.
 Al iniciar el programa, se solicitara la ID de las estaciones meteorologicas a estudiar y el rango de fechas.
 El programa admite un rango de fechas de hasta 6 meses, o bien 1 año completo del 1 de Enero al 31 de Diciembre.
 
 Los datos recibidos se descargaran en un archivo tipo JSON.
-Como somos conscientes de que no todo el mundo maneja ese formato, un segundo Script transforma si se desea los datos de ese archivo en datos tipo excel.
+Como somos conscientes de que no todo el mundo maneja ese formato, un segundo Script (convertidor_excel) transforma si se desea los datos de ese archivo en datos tipo excel.
 
-
-
+El tercer script (api_aemet_balance_hidrico_nacional) permite descargarse los balances hidricos nacionales publicados cada 10 dias.
+Este script solicita el año  y los dias en decenas.  Por ejemplo:   si introducimos el 2021  y 26, nos bajaremos el balance hidrico nacional del año 2023, dia 260  (16 de septiembre, si no hay error por nuestra parte)
 
 
 
@@ -59,10 +59,21 @@ pandas
 json
 os
 
+ C) Para el script del balance hidricon nacional:
+
+os
+requests
+sys
+dotenv 
+time
+
+
+
+
 
 3 - IDENTIFICADOR DE LAS ESTACIONES
 
-El programa requiere introducir los identificadores de las estaciones que se quieran estudiar.  
+El script para obtener datos de las estaciones requiere introducir los identificadores de las estaciones que se quieran estudiar.  
 Si se quiere probar con un ejemplo, estos 3 codigos corresponden a 3 estaciones de la provincia de Sevilla:  5790Y,5783,5788X
 
 Para obtener los id de todas las estaciones, pueden buscarse aqui:  [https://datosclima.es/index.htm](https://datosclima.es/Aemethistorico/Descargahistorico.html)
@@ -71,7 +82,7 @@ En esa web puede encontrarse el siguiente enlace, que iniciara directamente lade
 
 4 - SOBRE LOS METADATOS
 
-La API de AEMET permite descargar tambien los metadatos. Basicamente son la "leyenda" con la descripcion de los datos.
+La API de AEMET permite descargar tambien los metadatos de las estaciones . Basicamente son la "leyenda" con la descripcion de los datos.
 No obstante, los nombres asignados son muy descriptivos.  Ademas, una vez descargados son los mismos siempre.
 Por ello el programa da la opcion de guardarlos o no.
 
