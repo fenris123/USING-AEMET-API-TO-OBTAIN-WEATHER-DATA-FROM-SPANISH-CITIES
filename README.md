@@ -14,7 +14,7 @@ Como somos conscientes de que no todo el mundo maneja ese formato, un segundo Sc
 
 El tercer script (api_aemet_balance_hidrico_nacional) permite descargarse los balances hidricos nacionales publicados cada 10 dias.
 Este script solicita el año  y los dias en decenas.  Por ejemplo:   si introducimos el 2021  y 26, nos bajaremos el balance hidrico nacional del año 2023, dia 260  (16 de septiembre, si no hay error por nuestra parte)
-
+En un proximo desarrollo, se cambiara el sistema para que la introduccion de la fecha sea un poco mas intuitiva.
 
 
 
