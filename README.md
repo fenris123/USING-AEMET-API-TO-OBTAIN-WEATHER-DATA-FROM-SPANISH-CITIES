@@ -10,9 +10,20 @@ Al iniciar el programa, se solicitara la ID de las estaciones meteorologicas a e
 El programa admite un rango de fechas de hasta 6 meses, o bien 1 año completo del 1 de Enero al 31 de Diciembre.
 
 Los datos recibidos se descargaran en un archivo tipo JSON.
-Como somos conscientes de que no todo el mundo maneja ese formato, un segundo Script (convertidor_excel) transforma si se desea los datos de ese archivo en datos tipo excel.
 
-El tercer script (api_aemet_balance_hidrico_nacional) permite descargarse los balances hidricos nacionales publicados cada 10 dias.
+
+
+
+Un segundo script nos permitira obtener la informacion de todas las estaciones de España,  filtrando si se desea para quedarnos solocon aquellas que incluyen datos de irradiacion solar y presion atmosferica, o coger los datos de todas.
+ATENCION. RECOMENDAMOS PRECAUCIÓN AL USAR ESTE SCRIPT SI EL RANGO DE FECHAS A SELECCIONAR VA A SER MUY AMPLIO.
+SEAMOS RESPONSABLES AL USAR LOS RECURSOS DEL SERVIDOR.
+SI EL RANGO DE FECHAS ES MUY AMPLIO PLANTEESE DIVIDIR LA CONSULTA EN VARIAS MAS PEQUEÑAS, Y REALIZARLAS ESPACIADA EN EL TIEMPO.
+
+
+.  
+
+
+Por ultimo, el tercer script (api_aemet_balance_hidrico_nacional) permite descargarse los balances hidricos nacionales publicados cada 10 dias.
 Este script solicita el año  y los dias en decenas.  Por ejemplo:   si introducimos el 2021  y 26, nos bajaremos el balance hidrico nacional del año 2023, dia 260  (16 de septiembre, si no hay error por nuestra parte)
 En un proximo desarrollo, se cambiara el sistema para que la introduccion de la fecha sea un poco mas intuitiva.
 
@@ -53,13 +64,9 @@ sys
 dotenv
 datetime 
 
-B) Para el script convertidor_excel  (transformar los datos de JSON a Excel)
 
-pandas
-json
-os
 
- C) Para el script del balance hidricon nacional:
+ B) Para el script del balance hidricon nacional:
 
 os
 requests
@@ -76,7 +83,7 @@ time
 El script para obtener datos de las estaciones requiere introducir los identificadores de las estaciones que se quieran estudiar.  
 Si se quiere probar con un ejemplo, estos 3 codigos corresponden a 3 estaciones de la provincia de Sevilla:  5790Y,5783,5788X
 
-Para obtener los id de todas las estaciones, pueden buscarse aqui:  [https://datosclima.es/index.htm](https://datosclima.es/Aemethistorico/Descargahistorico.html)
+Los id de  las estaciones pueden buscarse aqui:  [https://datosclima.es/index.htm](https://datosclima.es/Aemethistorico/Descargahistorico.html)
 En esa web puede encontrarse el siguiente enlace, que iniciara directamente ladescarga del listado de estaciones en excel:  https://datosclima.es/Aemethistorico/Archivos/ListadoEstaciones.xlsx
 
 
@@ -102,9 +109,9 @@ https://www.aemet.es/es/nota_legal
 
 6- USO RESPONSABLE.
 
-Hemos limitado conscientemente la peticion de datos a un rango de 6 meses, o a un año entero.
-La API de AEMET admite una peticion de un rango maximo de 7 meses.  Para el año completo, el script simplemente encadena  2 peticiones.
-Si se quiere solicitar datos de varios años es posible, pero recomendamos prudencia, particularmente si va a adaptarse el codigo.  
+En el primer script (api_aemet)  hemos limitado conscientemente la peticion de datos a un rango de 6 meses, o bien a partir de ahi se salta al  año completo.
+La API de AEMET para los datos de estaciones individuales admite una peticion de un rango maximo de 7 meses.  Para el año completo, el script simplemente encadena  2 peticiones.
+Si se quiere solicitar datos de varios años haciendo varias consultas es posible, pero recomendamos prudencia, particularmente si va a adaptarse el codigo.  
 No va a suceder nada por ejecutarlo 2 o 3 veces seguidas para obtener los datos de 2 o 3 años distintos, pero si se quiere obtener los datos de muchos años por favor espacie sus consultas en el tiempo para no saturar el servidor.
 
 
@@ -112,7 +119,15 @@ De la misma forma, aunque el programa admite que se inserten varias estaciones s
 Como referencia cuando se consultan los datos de todas las estaciones directamente (funcion no incluida en este script, si lo necesita, contacte conmigo) la AEMET limita las fechas a consultar a un rango de 15 dias.
 Introducir 5 o 6 estaciones en una sola consulta es razonable.  Si necesita introducir muchas mas, recomendamos lo mismo que antes: Dividirlo en varias consultas espaciadas en el tiempo.
 
-Por lo demas, si el uso va a ser intensivo o se va a adaptar y modificar el script, recomendamos leer la documentacion disponible aqui:
+
+En el segundo script (api_aemet_todas_estaciones.py) recomendamos aun mas prudencia. El rango limite de la API para las peticiones de todas las estaciones es de 15 dias.
+Nuestro script toma el rango de fechas introducido y lo divide en varias peticiones de 14 dias, encadenando estas con una parada de 5 segundos entre una y otra.
+Hemos probado el script con un rango de fechas de 1 mes completo (31 dias). Hasta ahi no da problemas. 
+Si se quiere un rango de fechas mas amplio, recomendamos precaución. 
+
+
+
+Por lo demas, si el uso va a ser intensivo o se va a adaptar y modificar los scripts, recomendamos leer la documentacion disponible aqui:
 
 https://opendata.aemet.es/centrodedescargas/inicio
 https://opendata.aemet.es/centrodedescargas/docs/FAQs220424.pdf
