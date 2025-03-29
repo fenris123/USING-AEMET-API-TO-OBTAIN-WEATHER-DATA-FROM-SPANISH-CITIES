@@ -116,8 +116,8 @@ No va a suceder nada por ejecutarlo 2 o 3 veces seguidas para obtener los datos 
 
 
 De la misma forma, aunque el programa admite que se inserten varias estaciones separadas por comas, recomendamos moderacion. 
-Como referencia cuando se consultan los datos de todas las estaciones directamente (funcion no incluida en este script, si lo necesita, contacte conmigo) la AEMET limita las fechas a consultar a un rango de 15 dias.
-Introducir 5 o 6 estaciones en una sola consulta es razonable.  Si necesita introducir muchas mas, recomendamos lo mismo que antes: Dividirlo en varias consultas espaciadas en el tiempo.
+Como referencia cuando se consultan los datos de todas las estaciones directamente la AEMET limita las fechas a consultar a un rango de 15 dias.
+Introducir 5 o 6 estaciones en una sola consulta es razonable.  Si necesita introducir muchas mas, recomendamos lo mismo que antes: Dividirlo en varias consultas espaciadas en el tiempo, o bien emplear el sript alternativo para todas las estaciones.
 
 
 En el segundo script (api_aemet_todas_estaciones.py) recomendamos aun mas prudencia. El rango limite de la API para las peticiones de todas las estaciones es de 15 dias.
